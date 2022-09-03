@@ -1,2 +1,5 @@
-# the-house-project
-CSE 4400 The House Game Project
+# The House Video Game Project
+
+Using Unity Version: 2020.3.26f1
+
+Game Title: *in progress*
