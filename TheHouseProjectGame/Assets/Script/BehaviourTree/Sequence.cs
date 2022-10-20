@@ -28,8 +28,8 @@ public class Sequence : Node
                     break;
                 case NodeState.SUCCESS:             //If any child node is successful, continue evaluate child nodes
                     break;
-                case NodeState.FAILURE:
-                    ndeSte = NodeState.FAILURE;     //If any child node is failure, entire sequence fails
+                case NodeState.FAILURE:             //If any child node is failure, entire sequence fails
+                    ndeSte = NodeState.FAILURE;     
                     return ndeSte;
                 default:
                     break;
