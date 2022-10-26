@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthNode : Node
 {
     private ContestantAI ai;
-    private float threshold;
+    private float threshold;        //Threshold in which is considered low health
 
     //Constructor
     public HealthNode(ContestantAI ai, float threshold)
@@ -16,8 +16,7 @@ public class HealthNode : Node
 
     public override NodeState Evaluate()
     {
-        //Return current health if lower than threshold, otherwise return failure
-        return ai.GetCrntHlth() <= threshold ? NodeState.SUCCESS : NodeState.FAILURE;
+        return ai.GetCrntHlth() <= threshold ? NodeState.SUCCESS : NodeState.FAILURE;   //if current health is lower than threshold, return SUCCESS. If else, FAILURE.
     }
 
 
