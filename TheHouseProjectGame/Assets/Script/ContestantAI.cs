@@ -11,7 +11,7 @@ public class ContestantAI : MonoBehaviour
     //[SerializeField] private float influenceRange;      //Range in which contestant will be influenced towards a direct, FUTURE FEATURE
 
     //Contestant Looting
-    [SerializeField] private float lootRange;           //Range in whicb contestant will loot
+    [SerializeField] private float lootRange;           //Range in which contestant will loot
 
     //Contestant combat
     [SerializeField] private float chaseRange;          //Range in which contestant will make chase of enemy player or move tpwards loot
@@ -19,6 +19,10 @@ public class ContestantAI : MonoBehaviour
 
     //Contestant movement
     [SerializeField] private Transform contestantTransform;
+
+    //Color changing (TESTING ONLY)
+    private Material material;
+    //////////////////////////////////
 
     //Property to keep current health between 0 and the starting health
     private float crntHlth
@@ -31,11 +35,10 @@ public class ContestantAI : MonoBehaviour
     private void Start()
     {
         crntHlth = strtHlth;
-    }
 
-    private void Update()
-    {
-         
+        //TESTING ONLY
+        material = GetComponent<Material>();
+        //////////////////////////////////
     }
 
     //Grab current health
@@ -43,4 +46,16 @@ public class ContestantAI : MonoBehaviour
     {
         return crntHlth;
     }
+
+    private void Update()
+    {
+         
+    }
+
+    //TESTING ONLY
+    public void SetColor(Color color)
+    {
+        material.color = color;
+    }
+    //////////////////////////////////
 }
