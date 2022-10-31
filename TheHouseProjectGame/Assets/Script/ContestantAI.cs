@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ContestantAI : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class ContestantAI : MonoBehaviour
 
     //Contestant Looting
     [SerializeField] private float lootRange;           //Range in which contestant will loot
+    private Transform bestLootSpot;                     //  
 
     //Contestant combat
     [SerializeField] private float chaseRange;          //Range in which contestant will make chase of enemy player or move tpwards loot
@@ -19,10 +22,14 @@ public class ContestantAI : MonoBehaviour
 
     //Contestant movement
     [SerializeField] private Transform contestantTransform;
+    [SerializeField] private Loot[] availiableLoot;
+    private NavMeshAgent agent;
 
     //Color changing (TESTING ONLY)
     private Material material;
     //////////////////////////////////
+
+    private Node topNode;
 
     //Property to keep current health between 0 and the starting health
     private float crntHlth
@@ -32,13 +39,28 @@ public class ContestantAI : MonoBehaviour
     }
     ///////////////////////////////////////////////////////////////////
 
-    private void Start()
+    private void Awake()
     {
-        crntHlth = strtHlth;
+        agent = GetComponent<NavMeshAgent>();
 
         //TESTING ONLY
         material = GetComponent<Material>();
         //////////////////////////////////
+    }
+
+
+    private void Start()
+    {
+        crntHlth = strtHlth;
+
+        
+        ConstructBehaviourTree();
+    }
+
+    private void ConstructBehaviourTree()
+    {
+        IsThereLootNode lootAvailibleNode = new IsThereLootNode(availiableLoot, contestantTransform, this);
+        //GoToLootNode goToLootNode = new IsThereLootNode();
     }
 
     //Grab current health
@@ -58,4 +80,16 @@ public class ContestantAI : MonoBehaviour
         material.color = color;
     }
     //////////////////////////////////
+    
+    //Set best loot spot
+    public void SetBestLootSpot(Transform bestLootSpot)
+    {
+        this.bestLootSpot = bestLootSpot;
+    }
+    
+    //Get best loot spot
+    public Transform GetBestLootSpot()
+    {
+        return bestLootSpot;
+    }
 }
