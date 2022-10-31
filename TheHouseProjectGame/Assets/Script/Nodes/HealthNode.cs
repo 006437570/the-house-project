@@ -16,7 +16,7 @@ public class HealthNode : Node
 
     public override NodeState Evaluate()
     {
-        return ai.GetCrntHlth() <= threshold ? NodeState.SUCCESS : NodeState.FAILURE;   //if current health is lower than threshold, return SUCCESS. If else, FAILURE.
+        return ai.crntHlth <= threshold ? NodeState.SUCCESS : NodeState.FAILURE;   //if current health is lower than threshold, return SUCCESS. If else, FAILURE.
     }
 
 

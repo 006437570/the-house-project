@@ -9,12 +9,13 @@ public class ContestantAI : MonoBehaviour
     //[SerializeField] private float maxHlth;           //THe max health any contestant can have, FUTURE FEATURE
     [SerializeField] private float strtHlth;            //How much health a contestant starts with
     [SerializeField] private float lwHlthThrshld;       //How much health is considered low
+    private float currentHealth;
 
     //[SerializeField] private float influenceRange;      //Range in which contestant will be influenced towards a direct, FUTURE FEATURE
 
     //Contestant Looting
     [SerializeField] private float lootRange;           //Range in which contestant will loot
-    private Transform bestLootSpot;                     //  
+    private Transform bestLootSpot;                     //Best loot spot to go to  
 
     //Contestant combat
     [SerializeField] private float chaseRange;          //Range in which contestant will make chase of enemy player or move tpwards loot
@@ -32,10 +33,11 @@ public class ContestantAI : MonoBehaviour
     private Node topNode;
 
     //Property to keep current health between 0 and the starting health
-    private float crntHlth
+
+    public float crntHlth
     {
-        get { return crntHlth; }
-        set { crntHlth = Mathf.Clamp(value, 0, strtHlth); }
+        get { return currentHealth; }
+        set { currentHealth = Mathf.Clamp(value, 0, strtHlth); }
     }
     ///////////////////////////////////////////////////////////////////
 
@@ -51,7 +53,7 @@ public class ContestantAI : MonoBehaviour
 
     private void Start()
     {
-        crntHlth = strtHlth;
+        currentHealth = strtHlth;
 
         
         ConstructBehaviourTree();
@@ -59,21 +61,38 @@ public class ContestantAI : MonoBehaviour
 
     private void ConstructBehaviourTree()
     {
+        //LOOTING BRANCH
         IsThereLootNode lootAvailibleNode = new IsThereLootNode(availiableLoot, contestantTransform, this);
-        //GoToLootNode goToLootNode = new IsThereLootNode();
-    }
+        GoToLootNode gTLootNode = new GoToLootNode(agent, this);
+        //RangeNode lootingRngNode = new RangeNode(lootRange, contestantTransform, transform);              //Looting range (may not need)
+        LootNode ltNode = new LootNode(agent, this);
+        //HealthNode hlthNode = new HealthNode(this, lwHlthThrshld);
 
-    //Grab current health
-    public float GetCrntHlth()
-    {
-        return crntHlth;
+        //CHASING BRANCH
+        ChaseNode chseNode = new ChaseNode(contestantTransform, agent, this);
+        RangeNode chsingRngNode = new RangeNode(chaseRange, contestantTransform, transform);
+
+        //SEQUENCES AND SELECTORS (Very order specfic)
+        Sequence chaseSeqeunce = new Sequence(new List<Node> { chsingRngNode, chseNode });
+        Sequence goToLootSequence = new Sequence(new List<Node> { lootAvailibleNode, gTLootNode });
+        Selector findLoot = new Selector(new List<Node> { goToLootSequence, chaseSeqeunce });
+        //Sequence mainLootSequence = new Sequence(new List<Node> { });
+
+        //TOP NODE
+        topNode = new Selector(new List<Node> { findLoot, chaseSeqeunce });
     }
 
     private void Update()
     {
-         
-    }
+        topNode.Evaluate();
 
+        if (topNode.nodeState == NodeState.FAILURE)
+        {
+            //TESTING ONLY
+            SetColor(Color.red);
+            /////////////////////
+        }
+    }
     //TESTING ONLY
     public void SetColor(Color color)
     {

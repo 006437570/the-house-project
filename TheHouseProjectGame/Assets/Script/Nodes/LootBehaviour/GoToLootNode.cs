@@ -13,7 +13,7 @@ public class GoToLootNode : Node
     //////////////////////////////////
 
     //Consturctor
-    public GoToLootNode(Transform target, NavMeshAgent agent, ContestantAI ai)
+    public GoToLootNode(NavMeshAgent agent, ContestantAI ai)
     {
         this.agent = agent;
         this.ai = ai;

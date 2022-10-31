@@ -48,6 +48,7 @@ public class IsThereLootNode : Node
         float clstLootSqrd = Mathf.Infinity;                                                    //Closest distance squared to loot
         for(int i = 0; i < availibleLoot.Length; i++)
         {
+            Debug.Log(availibleLoot[i]);
             Vector2 dirToLoot = ai.transform.position - availibleLootSpots[i].position;         //Direction of loot
             float distSqrToLoot = dirToLoot.sqrMagnitude;                                       //Distance squared to loot
 
