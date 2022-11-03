@@ -6,34 +6,45 @@ using UnityEngine.AI;
 
 public class ContestantAI : MonoBehaviour
 {
+    //Movement
     private NavMeshAgent agent;
+    [SerializeField] private Transform contestantTransform;
 
-    //Color changing (TESTING ONLY)
-    private Material material;
-    //////////////////////////////////
+    //Loot related
+    [SerializeField] private Loot[] availibleLoot;
+    private Transform closestSpot;
+
+    //Sprite
+    public SpriteRenderer sprite;
 
     private Node topNode;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        sprite = GetComponent<SpriteRenderer>();
+        agent.updateRotation = false;           //RECOMMENDED BY CREATOR TO SET TO FALSE
+        agent.updateUpAxis = false;             //RECOMMENDED BY CREATOR TO SET TO FALSE
 
-        //TESTING ONLY
-        material = GetComponent<Material>();
-        //////////////////////////////////
     }
 
 
     private void Start()
     {
-        
         ConstructBehaviourTree();
     }
 
     private void ConstructBehaviourTree()
     {
+        //LOOT LEAVES
+        GatherLootSpotsNode gLsNode = new GatherLootSpotsNode(availibleLoot, contestantTransform, this);
+        GoToLoot GtLNode = new GoToLoot(agent, this);
+
+        //BRANCES
+        Sequence gLsSequence = new Sequence(new List<Node> { gLsNode, GtLNode });
+
         //TOP NODE
-        topNode = new Selector(new List<Node> {  });
+        topNode = new Selector(new List<Node> { gLsSequence });
     }
 
     private void Update()
@@ -42,15 +53,18 @@ public class ContestantAI : MonoBehaviour
 
         if (topNode.nodeState == NodeState.FAILURE)
         {
-            //TESTING ONLY
-            SetColor(Color.red);
-            /////////////////////
+            sprite.color = new Color(1,0,0,1);
+            agent.isStopped = true;
         }
     }
-    //TESTING ONLY
-    public void SetColor(Color color)
+
+    public void SetClosestSpot(Transform closestSpot)
     {
-        material.color = color;
+        this.closestSpot = closestSpot;
     }
-    //////////////////////////////////
+
+    public Transform GetClosestLootSpot()
+    {
+        return closestSpot;
+    }
 }

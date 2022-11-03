@@ -24,9 +24,6 @@ public class ChaseNode : Node
     //Abstract, needed for any class making a reference
     public override NodeState Evaluate()
     {
-        //TESTING ONLY
-        ai.SetColor(Color.yellow);
-        //////////////////////////////////
 
         float distance = Vector2.Distance(target.position, agent.transform.position);   //Calculate distance of target
 
