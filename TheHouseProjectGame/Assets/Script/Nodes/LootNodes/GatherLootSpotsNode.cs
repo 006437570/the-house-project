@@ -54,19 +54,24 @@ public class GatherLootSpotsNode : Node
 
     private Transform FindBestLootAvailable(Loot cS)
     {
-        Transform[] availableSpots = cS.GetLootSpots();         //Gather all loot spots
+        Transform[] availableSpots = cS.GetLootSpots();                     //Gather all loot spots
         Transform bestSpot = null;
-        float closestDistSqrd = Mathf.Infinity;                 //Take closest range, which is infinity
+        float closestDistSqrd = Mathf.Infinity;                             //Take closest range, which is infinity
         //Vector3 currentPos = ai.transform.position;
 
         foreach(Transform aS in availableSpots)
         {
-            Vector3 dirToSpot = contestant.position - aS.position;
-            float distSqrdToSpot = dirToSpot.sqrMagnitude;
-            if(distSqrdToSpot < closestDistSqrd)
+            if (aS)                                                         //If there is an availible spot
             {
-                closestDistSqrd = distSqrdToSpot;
-                bestSpot = aS;
+                Vector3 dirToSpot = contestant.position - aS.position;
+
+
+                float distSqrdToSpot = dirToSpot.sqrMagnitude;
+                if (distSqrdToSpot < closestDistSqrd)
+                {
+                    closestDistSqrd = distSqrdToSpot;
+                    bestSpot = aS;
+                }
             }
         }
 
