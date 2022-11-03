@@ -32,16 +32,17 @@ public class GatherLootSpotsNode : Node
 
     private Transform FindClosestSpot()
     {
-        //Check if there already is closest spot
+        /*Check if there already is closest spot
         if (ai.GetClosestLootSpot() != null)
         {
             return ai.GetClosestLootSpot();
         }
-
+        */////
+        
         Transform closestSpot = null;
-        for (int i = 0; i < availableLoot.Length; i++)
+        foreach(Loot aL in availableLoot)
         {
-            Transform bestLootAvailable = FindBestLootAvailable(availableLoot[i]);
+            Transform bestLootAvailable = FindBestLootAvailable(aL);
             if (bestLootAvailable != null)
             {
                 closestSpot = bestLootAvailable;
@@ -58,14 +59,14 @@ public class GatherLootSpotsNode : Node
         float closestDistSqrd = Mathf.Infinity;                 //Take closest range, which is infinity
         //Vector3 currentPos = ai.transform.position;
 
-        for (int i = 0; i < availableSpots.Length; i++)
+        foreach(Transform aS in availableSpots)
         {
-            Vector3 dirToSpot = contestant.position - availableSpots[i].position;
+            Vector3 dirToSpot = contestant.position - aS.position;
             float distSqrdToSpot = dirToSpot.sqrMagnitude;
             if(distSqrdToSpot < closestDistSqrd)
             {
                 closestDistSqrd = distSqrdToSpot;
-                bestSpot = availableSpots[i];
+                bestSpot = aS;
             }
         }
 

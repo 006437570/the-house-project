@@ -38,12 +38,10 @@ public class GoToLoot : Node
         }
         else
         {
-                                                            //If otherwise, return SUCCESS
-        }
-        {
             ai.sprite.color = new Color(0, 0, 1, 1);
             agent.isStopped = true;
-            return NodeState.SUCCESS;
+            return NodeState.SUCCESS;                                 //If otherwise, return SUCCESS
         }
+
     }
 }
