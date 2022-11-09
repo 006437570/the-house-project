@@ -13,6 +13,7 @@ public class ContestantAI : MonoBehaviour
     //Loot related
     [SerializeField] private Loot[] availibleLoot;
     private Transform closestSpot;
+    [SerializeField] private Circle circle;
 
     //Sprite
     public SpriteRenderer sprite;
@@ -36,9 +37,13 @@ public class ContestantAI : MonoBehaviour
 
     private void ConstructBehaviourTree()
     {
+        Transform center = circle.GetCircleCenter();
+
         //LOOT LEAVES
         GatherLootSpotsNode gLsNode = new GatherLootSpotsNode(availibleLoot, contestantTransform, this);
         GoToLoot GtLNode = new GoToLoot(agent, this);
+        //if()
+        //Flee run = new Flee(center, contestantTransform, this)
 
         //BRANCES
         Sequence gLsSequence = new Sequence(new List<Node> { gLsNode, GtLNode });
@@ -66,5 +71,9 @@ public class ContestantAI : MonoBehaviour
     public Transform GetClosestLootSpot()
     {
         return closestSpot;
+    }
+    void OnTriggerStay2D(Collider2D other)
+    {
+
     }
 }
