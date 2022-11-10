@@ -10,10 +10,12 @@ public class ContestantAI : MonoBehaviour
     private NavMeshAgent agent;
     [SerializeField] private Transform contestantTransform;
 
+    //Circle related
+    [SerializeField] private Collider2D Circle;
+
     //Loot related
     [SerializeField] private Loot[] availibleLoot;
     private Transform closestSpot;
-    [SerializeField] private Circle circle;
 
     //Sprite
     public SpriteRenderer sprite;
@@ -37,19 +39,20 @@ public class ContestantAI : MonoBehaviour
 
     private void ConstructBehaviourTree()
     {
-        Transform center = circle.GetCircleCenter();
 
         //LOOT LEAVES
         GatherLootSpotsNode gLsNode = new GatherLootSpotsNode(availibleLoot, contestantTransform, this);
         GoToLoot GtLNode = new GoToLoot(agent, this);
-        //if()
-        //Flee run = new Flee(center, contestantTransform, this)
+
+        //RING LEAVES
+        IfOutsideRingNode IoRNode = new IfOutsideRingNode(this, Circle);
 
         //BRANCES
+        Sequence RfRSequence = new Sequence(new List<Node> { IoRNode });
         Sequence gLsSequence = new Sequence(new List<Node> { gLsNode, GtLNode });
 
         //TOP NODE
-        topNode = new Selector(new List<Node> { gLsSequence });
+        topNode = new Selector(new List<Node> { RfRSequence, gLsSequence });
     }
 
     private void Update()
@@ -63,6 +66,7 @@ public class ContestantAI : MonoBehaviour
         }
     }
 
+    //Setter and Getter for Loot
     public void SetClosestSpot(Transform closestSpot)
     {
         this.closestSpot = closestSpot;
@@ -71,9 +75,5 @@ public class ContestantAI : MonoBehaviour
     public Transform GetClosestLootSpot()
     {
         return closestSpot;
-    }
-    void OnTriggerStay2D(Collider2D other)
-    {
-
     }
 }

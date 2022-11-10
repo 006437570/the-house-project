@@ -29,7 +29,7 @@ public class GoToLoot : Node
 
         float distance = Vector3.Distance(lootSpot.position, agent.transform.position);
 
-        if(distance > 0.2f)                                 //if distance is greater than some really small number, set to RUNNING
+        if(distance > 0.3f)                                 //if distance is greater than some really small number, set to RUNNING
         {
             ai.sprite.color = new Color(1, 1, 0, 1);
             agent.isStopped = false;

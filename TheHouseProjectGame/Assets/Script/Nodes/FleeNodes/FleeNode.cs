@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;   //Need for NavMesgAgent
 
-public class Flee : Node
+public class FleeNode : Node
 {
 
-    private Transform target;       //target of chase
+    private Transform target;       //target to run away from
     private NavMeshAgent agent;     //Allows contestant to navigate using NavMesh
-
-    //TESTING ONLY
     private ContestantAI ai;
-    //////////////////////////////////
 
     //Consturctor
-    public Flee(Transform target, NavMeshAgent agent, ContestantAI ai)
+    public FleeNode(Transform target, NavMeshAgent agent, ContestantAI ai)
     {
         this.target = target;
         this.agent = agent;
@@ -24,7 +21,6 @@ public class Flee : Node
     //Abstract, needed for any class making a reference
     public override NodeState Evaluate()
     {
-
         float distance = Vector2.Distance(target.position, agent.transform.position);   //Calculate distance of target
 
         if (distance > 0.2f)                                                             //if distance is smaller than a small number, move towards target...
