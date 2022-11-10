@@ -52,7 +52,7 @@ public class ContestantAI : MonoBehaviour
         Sequence gLsSequence = new Sequence(new List<Node> { gLsNode, GtLNode });
 
         //TOP NODE
-        topNode = new Selector(new List<Node> { RfRSequence, gLsSequence });
+        topNode = new Selector(new List<Node> { gLsSequence, RfRSequence });
     }
 
     private void Update()
