@@ -6,6 +6,21 @@ using UnityEngine.AI;
 
 public class ContestantAI : MonoBehaviour
 {
+
+    //Health
+    [SerializeField] private float startingHealth;
+    [SerializeField] private float lowHealthThreshold;
+    //[SerializeField] private float healthRestoreRate;
+
+    private float cH;
+
+    //Clamp to keep health from going past startingHealth
+    public float currentHealth
+    {
+        get { return cH; }
+        set { cH = Mathf.Clamp(value, 0, startingHealth); }
+    }
+
     //Movement
     private NavMeshAgent agent;
     [SerializeField] private Transform contestantTransform;
@@ -34,25 +49,24 @@ public class ContestantAI : MonoBehaviour
 
     private void Start()
     {
+        cH = startingHealth;
         ConstructBehaviourTree();
     }
 
     private void ConstructBehaviourTree()
     {
-
         //LOOT LEAVES
         GatherLootSpotsNode gLsNode = new GatherLootSpotsNode(availibleLoot, contestantTransform, this);
         GoToLoot GtLNode = new GoToLoot(agent, this);
 
-        //RING LEAVES
-        IfOutsideRingNode IoRNode = new IfOutsideRingNode(this, Circle);
+        //FLEE LEAVES
+        HealthNode healthNode = new HealthNode(this, lowHealthThreshold);
 
         //BRANCES
-        Sequence RfRSequence = new Sequence(new List<Node> { IoRNode });
         Sequence gLsSequence = new Sequence(new List<Node> { gLsNode, GtLNode });
 
         //TOP NODE
-        topNode = new Selector(new List<Node> { gLsSequence, RfRSequence });
+        topNode = new Selector(new List<Node> { gLsSequence });
     }
 
     private void Update()
