@@ -6,15 +6,13 @@ using UnityEngine.AI;   //Need for NavMesgAgent
 public class ChaseNode : Node
 {
 
-    private Transform target;       //target of chase
+    private Transform[] target;     //target of chase
+    private float distance;         //Distance from target
     private NavMeshAgent agent;     //Allows contestant to navigate using NavMesh
-
-    //TESTING ONLY
     private ContestantAI ai;
-    //////////////////////////////////
 
     //Consturctor
-    public ChaseNode(Transform target, NavMeshAgent agent, ContestantAI ai)
+    public ChaseNode(Transform[] target, NavMeshAgent agent, ContestantAI ai)
     {
         this.target = target;
         this.agent = agent;
@@ -24,19 +22,23 @@ public class ChaseNode : Node
     //Abstract, needed for any class making a reference
     public override NodeState Evaluate()
     {
-
-        float distance = Vector2.Distance(target.position, agent.transform.position);   //Calculate distance of target
-
-        if(distance > 0.2f)                                                             //if distance is smaller than a small number, move towards target...
+        foreach (Transform t in target)
         {
-            agent.isStopped = false;
-            agent.SetDestination(target.position);
-            return NodeState.RUNNING;
+            distance = Vector2.Distance(t.position, agent.transform.position);   //Calculate distance of target
+
+            if (distance > 0.2f)                                                             //if distance is smaller than a small number, move towards target...
+            {
+                ai.sprite.color = new Color(1, 1, 0, 1);
+                agent.isStopped = false;
+                agent.SetDestination(t.position);
+            }
+            else                                                                            //...otherwise, stop and return SUCCESS
+            {
+                Debug.Log(distance);
+                agent.isStopped = true;
+            }
         }
-        else                                                                            //...otherwise, stop and return SUCCESS
-        {
-            agent.isStopped = true;
-            return NodeState.SUCCESS;
-        }
+
+        return distance > 0.2f ? NodeState.RUNNING : NodeState.SUCCESS;
     }
 }

@@ -24,9 +24,12 @@ public class ContestantAI : MonoBehaviour
     //Movement
     private NavMeshAgent agent;
     [SerializeField] private Transform contestantTransform;
+    public Transform[] enemyTransform;
+    [SerializeField] private float chaseRange;
+    [SerializeField] private float attackRange;
 
     //Circle related
-    [SerializeField] private Collider2D Circle;
+    // [SerializeField] private Collider2D Circle;
 
     //Loot related
     [SerializeField] private Loot[] availibleLoot;
@@ -55,18 +58,30 @@ public class ContestantAI : MonoBehaviour
 
     private void ConstructBehaviourTree()
     {
-        //LOOT LEAVES
+
+        //RANGE-CHASE
+        ChaseNode chaseNode = new ChaseNode(enemyTransform, agent, this);
+        RangeNode chaseRangeNode = new RangeNode(chaseRange, enemyTransform, transform);
+        RangeNode attackRangeNode = new RangeNode(attackRange, enemyTransform, transform);
+
+        //ATTACK
+        AttackNode attackNode = new AttackNode(agent, this, enemyTransform);
+
+        //FLEE
+        HealthNode healthNode = new HealthNode(this, lowHealthThreshold);
+
+        //LOOT
         GatherLootSpotsNode gLsNode = new GatherLootSpotsNode(availibleLoot, contestantTransform, this);
         GoToLoot GtLNode = new GoToLoot(agent, this);
 
-        //FLEE LEAVES
-        HealthNode healthNode = new HealthNode(this, lowHealthThreshold);
-
         //BRANCES
-        Sequence gLsSequence = new Sequence(new List<Node> { gLsNode, GtLNode });
+        Sequence chaseSequence = new Sequence(new List<Node> { chaseRangeNode, chaseNode });
+        Sequence attackSequence = new Sequence(new List<Node> { attackRangeNode, attackNode });
+
+        Sequence lootSequence = new Sequence(new List<Node> { gLsNode, GtLNode });
 
         //TOP NODE
-        topNode = new Selector(new List<Node> { gLsSequence });
+        topNode = new Selector(new List<Node> { chaseSequence, attackSequence, lootSequence });
     }
 
     private void Update()
@@ -75,7 +90,8 @@ public class ContestantAI : MonoBehaviour
 
         if (topNode.nodeState == NodeState.FAILURE)
         {
-            sprite.color = new Color(1,0,0,1);
+            Debug.Log("Top Node FAILURE");
+            sprite.color = new Color(0,0,0,1);
             agent.isStopped = true;
         }
     }
@@ -89,5 +105,17 @@ public class ContestantAI : MonoBehaviour
     public Transform GetClosestLootSpot()
     {
         return closestSpot;
+    }
+
+    public void LootBuff(float buff)
+    {
+        startingHealth += buff;
+        attackRange += buff;
+    }
+
+    //Take damage
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
     }
 }

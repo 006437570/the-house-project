@@ -29,19 +29,18 @@ public class GoToLoot : Node
 
         float distance = Vector3.Distance(lootSpot.position, agent.transform.position);
 
-        if(distance > 0.3f)                                 //if distance is greater than some really small number, set to RUNNING
+        if(distance > 0.3f)                                 
         {
             ai.sprite.color = new Color(1, 1, 0, 1);
             agent.isStopped = false;
             agent.SetDestination(lootSpot.position);
-            return NodeState.RUNNING;
         }
         else
         {
             ai.sprite.color = new Color(0, 0, 1, 1);
-            agent.isStopped = true;
-            return NodeState.SUCCESS;                                 //If otherwise, return SUCCESS
+            agent.isStopped = true;                           
         }
 
+        return agent.isStopped ?  NodeState.SUCCESS : NodeState.RUNNING; //if distance is greater than some really small number, set to RUNNING, if otherwise, return SUCCESS
     }
 }

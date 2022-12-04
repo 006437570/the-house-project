@@ -65,7 +65,6 @@ public class GatherLootSpotsNode : Node
             {
                 Vector3 dirToSpot = contestant.position - aS.position;
 
-
                 float distSqrdToSpot = dirToSpot.sqrMagnitude;
                 if (distSqrdToSpot < closestDistSqrd)
                 {
