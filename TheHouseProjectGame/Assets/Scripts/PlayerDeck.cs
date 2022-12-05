@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerDeck : MonoBehaviour
 {
-    public List<Card> deck = new List<Card>();
+    public List<Card> container = new List<Card>();
     public int x; 
     public static int deckSize;
-    public List<Card> container = new List<Card>();
+    public List<Card> deck = new List<Card>();
     public static List<Card> staticDeck = new List<Card>();
 
     public GameObject cardInDeck1;
@@ -16,17 +16,17 @@ public class PlayerDeck : MonoBehaviour
     public GameObject cardInDeck4;
 
     public GameObject CardToHand;
-    public GameObject[] clones;
+    public GameObject[] Clones;
     public GameObject Hand;
     
     // Start is called before the first frame update
     void Start()
     {
         x = 0;
-        
+        deckSize = 40;
         for(int i = 0; i < 40; i++)
         {
-            x = Random.Range(0,4);
+            x = Random.Range(1,CardDatabase.cardList.Count);
             deck[i] = CardDatabase.cardList[x]; 
         }
 
@@ -38,32 +38,36 @@ public class PlayerDeck : MonoBehaviour
     {
         staticDeck = deck;
       
-        if(deckSize < 30)
+        if(deckSize < 40)
           {
             cardInDeck1.SetActive(false);
           }
-        if(deckSize < 20)
+        if(deckSize < 30)
           {
             cardInDeck2.SetActive(false);
           }
-        if(deckSize < 5)
+        if(deckSize < 20)
           {
             cardInDeck3.SetActive(false);
           }
-        if(deckSize < 1)
+        if(deckSize < 10)
           {
             cardInDeck4.SetActive(false);
+          }
+
+          if(TurnSystem.startTurn == true)
+          {
+            StartCoroutine(Draw(1));
+            TurnSystem.startTurn = false;
           }
     }
 
     IEnumerator StartGame()
     {
-      for(int i = 0; i <= 4; i++)
+      for(int i = 0; i <= 3; i++)
       {
         yield return new WaitForSeconds(1);
-        //new
-        //audioSource.PlayOneShot(draw, if);
-        //new
+       
         Instantiate(CardToHand, transform.position, transform.rotation);
       }
     }
@@ -75,7 +79,16 @@ public class PlayerDeck : MonoBehaviour
             container[0] = deck[i];
             int randomIndex = Random.Range(i, deckSize);
             deck[i] = deck[randomIndex];
-            deck[randomIndex] = container[0];
+            deck[randomIndex] = container[0]; 
         }
+    }
+
+    IEnumerator Draw(int x)
+    {
+      for(int i =0; i<x; i++)
+      {
+        yield return new WaitForSeconds(1);
+        Instantiate(CardToHand, transform.position, transform.rotation);
+      }
     }
 }

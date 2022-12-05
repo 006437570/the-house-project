@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Clone
+  - Spawnable
   layers:
   - Default
   - TransparentFX

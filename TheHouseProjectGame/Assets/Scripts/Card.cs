@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
-public class Card : ScriptableObject
+public class Card
 {
     
     public int id;
