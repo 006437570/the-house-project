@@ -48,21 +48,5 @@ public class DisplayCard : MonoBehaviour
         powerText.text = " " + power;
         descText.text = " " + cardDesc;
         artImage.sprite = spriteImage;
-
-        Hand = GameObject.Find("Hand");
-        if(this.transform.parent == Hand.transform.parent)
-        {
-            cardBack = false;
-        }
-        staticCardBack = cardBack;
-
-        if(this.tag == "Clone")
-        {
-            displayCard[0] = PlayerDeck.staticDeck[numberOfCardsInDeck];
-            numberOfCardsInDeck -= 1;
-            PlayerDeck.deckSize -= 1;
-            cardBack = false;
-            this.tag = "Untagged";
-        }
     }
 }
