@@ -129,7 +129,7 @@ public class ContestantAI : MonoBehaviour
     private void OnMouseDown()
     {
         Debug.Log("Click!"); 
-        float dmg = 1;
+        float dmg = 999;
         TakeDamage(dmg);
     }
 

@@ -222,50 +222,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &111690215
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 111690217}
-  - component: {fileID: 111690216}
-  m_Layer: 0
-  m_Name: GameController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &111690216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111690215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14b39b54a2551f14d95fbb94fa9c9de3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
---- !u!4 &111690217
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111690215}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.296224, y: -7.490098, z: -155.48697}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &118121370
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +311,7 @@ GameObject:
   - component: {fileID: 179594445}
   - component: {fileID: 179594447}
   - component: {fileID: 179594446}
+  - component: {fileID: 179594448}
   m_Layer: 0
   m_Name: LootSpot
   m_TagString: Untagged
@@ -443,6 +400,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &179594448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 179594444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67768e2721ad1a84ea0dd1dde05522a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &294503425 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3029481576879554625, guid: 6b5a4545d26bf0d4f94c6f6953ed66e5, type: 3}
@@ -1040,6 +1009,7 @@ GameObject:
   - component: {fileID: 757809349}
   - component: {fileID: 757809351}
   - component: {fileID: 757809350}
+  - component: {fileID: 757809352}
   m_Layer: 0
   m_Name: LootSpot (1)
   m_TagString: Untagged
@@ -1128,6 +1098,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &757809352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757809348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67768e2721ad1a84ea0dd1dde05522a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &796673317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,6 +1349,7 @@ GameObject:
   - component: {fileID: 877631676}
   - component: {fileID: 877631678}
   - component: {fileID: 877631677}
+  - component: {fileID: 877631679}
   m_Layer: 0
   m_Name: LootSpot (3)
   m_TagString: Untagged
@@ -1455,6 +1438,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &877631679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877631675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67768e2721ad1a84ea0dd1dde05522a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &968815524
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,6 +1560,7 @@ GameObject:
   - component: {fileID: 998543681}
   - component: {fileID: 998543683}
   - component: {fileID: 998543682}
+  - component: {fileID: 998543684}
   m_Layer: 0
   m_Name: LootSpot (2)
   m_TagString: Untagged
@@ -1653,6 +1649,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &998543684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 998543680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67768e2721ad1a84ea0dd1dde05522a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1029200898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2273,6 +2281,7 @@ GameObject:
   - component: {fileID: 1610118070}
   - component: {fileID: 1610118072}
   - component: {fileID: 1610118071}
+  - component: {fileID: 1610118073}
   m_Layer: 0
   m_Name: LootSpot (4)
   m_TagString: Untagged
@@ -2361,6 +2370,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1610118073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610118069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67768e2721ad1a84ea0dd1dde05522a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1666161822
 GameObject:
   m_ObjectHideFlags: 0
@@ -2723,3 +2744,60 @@ PrefabInstance:
       objectReference: {fileID: 1029200899}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b5a4545d26bf0d4f94c6f6953ed66e5, type: 3}
+--- !u!1001 &4862415746222223956
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4862415746115777459, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_Name
+      value: GameController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862415746115777469, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862415746115777469, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.296224
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862415746115777469, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.490098
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862415746115777469, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -155.48697
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862415746115777469, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862415746115777469, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862415746115777469, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862415746115777469, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862415746115777469, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862415746115777469, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862415746115777469, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 38a98fed6e5196444a28f0226bbf60dd, type: 3}
