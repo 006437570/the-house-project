@@ -26,19 +26,19 @@ public class ChaseNode : Node
         {
             distance = Vector2.Distance(t.position, agent.transform.position);   //Calculate distance of target
 
-            if (distance > 0.2f)                                                             //if distance is smaller than a small number, move towards target...
+            if (distance > 1f)                                                             
             {
                 ai.sprite.color = new Color(1, 1, 0, 1);
                 agent.isStopped = false;
                 agent.SetDestination(t.position);
             }
-            else                                                                            //...otherwise, stop and return SUCCESS
+            else                                                                            
             {
-                Debug.Log(distance);
+                ai.sprite.color = new Color(1, 1, 1, 1);
                 agent.isStopped = true;
             }
         }
 
-        return distance > 0.2f ? NodeState.RUNNING : NodeState.SUCCESS;
+        return distance > 1f ? NodeState.RUNNING : NodeState.SUCCESS;                       //if distance is smaller than a small number, move towards target. Otherwise, stop and return SUCCESS
     }
 }

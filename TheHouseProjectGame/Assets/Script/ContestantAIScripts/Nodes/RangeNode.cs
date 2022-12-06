@@ -20,9 +20,16 @@ public class RangeNode : Node
     //Abstract, needed for any class making a reference
     public override NodeState Evaluate()
     {
+
         foreach (Transform t in target)
         {
+            if (t == null)
+            {
+                return NodeState.FAILURE;
+            }
+
             distance = Vector2.Distance(t.position, origin.position);        //Calculate distance between player and distance
+
         }
 
         return distance <= range ? NodeState.SUCCESS : NodeState.FAILURE;           //If in range, return SUCCESS. If else, FAILURE

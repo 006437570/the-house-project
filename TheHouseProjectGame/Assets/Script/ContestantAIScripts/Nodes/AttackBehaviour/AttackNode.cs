@@ -29,8 +29,8 @@ public class AttackNode : Node
         {
             Vector3 direction = t.position - ai.transform.position;
             Vector3 currentDirection = Vector3.SmoothDamp(ai.transform.forward, direction, ref currentVelocity, smoothDamp);
-            Quaternion rotation = Quaternion.LookRotation(currentDirection, Vector3.up);
-            ai.transform.rotation = rotation;
+            //Quaternion rotation = Quaternion.LookRotation(currentDirection, Vector3.up);
+            //ai.transform.rotation = rotation;
         }
 
         return NodeState.RUNNING;

@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 11829546}
   m_Layer: 0
   m_Name: Contestant (1)
-  m_TagString: Untagged
+  m_TagString: Contestant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
   - {fileID: 294503425}
   - {fileID: 2038057394}
   chaseRange: 10
-  attackRange: 5
+  attackRange: 2
   availibleLoot:
   - {fileID: 1106789350}
   sprite: {fileID: 11829548}
@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 294503426}
   m_Layer: 0
   m_Name: Contestant
-  m_TagString: Untagged
+  m_TagString: Contestant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -566,7 +566,7 @@ MonoBehaviour:
   - {fileID: 11829544}
   - {fileID: 2038057394}
   chaseRange: 10
-  attackRange: 5
+  attackRange: 2
   availibleLoot:
   - {fileID: 1106789350}
   sprite: {fileID: 294503424}
@@ -1589,6 +1589,7 @@ MonoBehaviour:
   - {fileID: 998543681}
   - {fileID: 877631676}
   - {fileID: 1610118070}
+  lootBuff: 1
 --- !u!4 &1106789351
 Transform:
   m_ObjectHideFlags: 0
@@ -2160,9 +2161,10 @@ GameObject:
   - component: {fileID: 2038057393}
   - component: {fileID: 2038057392}
   - component: {fileID: 2038057391}
+  - component: {fileID: 2038057395}
   m_Layer: 0
   m_Name: Contestant (2)
-  m_TagString: Untagged
+  m_TagString: Contestant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2208,7 +2210,7 @@ MonoBehaviour:
   - {fileID: 294503425}
   - {fileID: 11829544}
   chaseRange: 10
-  attackRange: 5
+  attackRange: 2
   availibleLoot:
   - {fileID: 1106789350}
   sprite: {fileID: 2038057393}
@@ -2271,9 +2273,25 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038057389}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.44, y: -6.95, z: -0.29519472}
+  m_LocalPosition: {x: -10.47, y: -6.71, z: -0.29519472}
   m_LocalScale: {x: 0.16929, y: 0.16929, z: 0.16929}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &2038057395
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038057389}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.99999994, y: 1.9999999}
+  m_Direction: 0

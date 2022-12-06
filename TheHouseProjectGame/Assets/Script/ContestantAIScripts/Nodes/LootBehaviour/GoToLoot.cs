@@ -8,6 +8,11 @@ public class GoToLoot : Node
     private NavMeshAgent agent;     //Allows contestant to navigate using NavMesh
     private ContestantAI ai;
 
+    private Loot loot;
+    private float lootBuff = 1;
+    private float lootTimer;
+    private float lTimerDelayer = 2;
+
     //Consturctor
     public GoToLoot(NavMeshAgent agent, ContestantAI ai)
     {
@@ -34,9 +39,20 @@ public class GoToLoot : Node
             ai.sprite.color = new Color(1, 1, 0, 1);
             agent.isStopped = false;
             agent.SetDestination(lootSpot.position);
+
         }
         else
         {
+            //Gather Loot at a set rate
+            lootTimer += Time.deltaTime;
+            if (lootTimer >= lTimerDelayer)
+            {
+                lootTimer = 0f;
+                lootBuff = Random.Range(1, 10);
+                ai.LootBuff(lootBuff);
+            }
+            ///////////////////////////////
+
             ai.sprite.color = new Color(0, 0, 1, 1);
             agent.isStopped = true;                           
         }

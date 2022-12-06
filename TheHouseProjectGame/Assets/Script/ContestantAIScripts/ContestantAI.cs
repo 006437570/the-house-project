@@ -81,7 +81,7 @@ public class ContestantAI : MonoBehaviour
         Sequence lootSequence = new Sequence(new List<Node> { gLsNode, GtLNode });
 
         //TOP NODE
-        topNode = new Selector(new List<Node> { chaseSequence, attackSequence, lootSequence });
+        topNode = new Selector(new List<Node> { attackSequence, chaseSequence, lootSequence });
     }
 
     private void Update()
@@ -106,7 +106,10 @@ public class ContestantAI : MonoBehaviour
     {
         return closestSpot;
     }
+    ///////////////////////////////
+    
 
+    //Give loot to player
     public void LootBuff(float buff)
     {
         startingHealth += buff;
