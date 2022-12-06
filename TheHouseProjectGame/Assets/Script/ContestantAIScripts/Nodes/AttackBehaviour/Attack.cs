@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-	[SerializeField] private LayerMask mask;
+	//[SerializeField] private LayerMask mask;
 
 	[SerializeField] private float damage;
 
@@ -14,6 +14,7 @@ public class Attack : MonoBehaviour
 	{
 		if (Input.GetMouseButtonDown(0))
 		{
+			//Debug.Log("Click!");
 			Shoot();
 		}
 	}
@@ -21,7 +22,9 @@ public class Attack : MonoBehaviour
 	private void Shoot()
 	{
 		RaycastHit hit;
-		if (Physics.Raycast(transform.position, transform.forward, out hit, mask))
+		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+		if (Physics.Raycast(ray, out hit))
 		{
 			ContestantAI ai = hit.collider.GetComponent<ContestantAI>();
 			if (ai != null)

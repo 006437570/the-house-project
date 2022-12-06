@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetCircleTransform: {fileID: 0}
+  StartingCircleSize: 50
+  StartingTarCircleSize: 25
   circleSize: {x: 0, y: 0, z: 0}
   circlePosition: {x: 0, y: 0, z: 0}
   circleShrinkSpeed: 5

@@ -12,6 +12,8 @@ public class DamageCircle : MonoBehaviour
     [SerializeField] private Transform targetCircleTransform;
 
     //Current size/positon of circle
+    [SerializeField] private float StartingCircleSize;
+    [SerializeField] private float StartingTarCircleSize;
     [SerializeField] private Vector3 circleSize;
     [SerializeField] private Vector3 circlePosition;
 
@@ -31,10 +33,10 @@ public class DamageCircle : MonoBehaviour
         circleTransform = transform.Find("circle");
 
         //Set starting size and position
-        SetCircleSize(new Vector3(0, 0), new Vector3(200, 200));
+        SetCircleSize(new Vector3(0, 0), new Vector3(StartingCircleSize, StartingCircleSize));
 
         //Set first target circle's size and position
-        SetTargetCircle(new Vector3(0, 0), new Vector3(100, 100), shrinkTimer);
+        SetTargetCircle(new Vector3(0, 0), new Vector3(StartingTarCircleSize, StartingTarCircleSize), shrinkTimer);
     }
 
     private void Update()
@@ -85,7 +87,7 @@ public class DamageCircle : MonoBehaviour
     private void GenerateTargetCircle()
     {
         //RNG for size and postioon
-        float shrinkSizeAmount = Random.Range(5f, 10f);
+        float shrinkSizeAmount = 5f;
         Vector3 generatedTargetCircleSize = circleSize - new Vector3(shrinkSizeAmount, shrinkSizeAmount);
 
         Vector3 generatedTargetCirclePosition = circlePosition + new Vector3(Random.Range(-shrinkSizeAmount, shrinkSizeAmount), 

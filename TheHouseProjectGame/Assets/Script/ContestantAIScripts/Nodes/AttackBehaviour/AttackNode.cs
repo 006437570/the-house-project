@@ -7,15 +7,17 @@ public class AttackNode : Node
 {
     private NavMeshAgent agent;
     private ContestantAI ai;
+    private Transform contestant;
     private Transform[] target;
 
     private Vector3 currentVelocity;
     private float smoothDamp;
 
-    public AttackNode(NavMeshAgent agent, ContestantAI ai, Transform[] target)
+    public AttackNode(NavMeshAgent agent, ContestantAI ai, Transform contestant, Transform[] target)
     {
         this.agent = agent;
         this.ai = ai;
+        this.contestant = contestant;
         this.target = target;
         smoothDamp = 1f;
     }

@@ -48,7 +48,7 @@ public class GoToLoot : Node
             if (lootTimer >= lTimerDelayer)
             {
                 lootTimer = 0f;
-                lootBuff = Random.Range(1, 10);
+                lootBuff = 1;
                 ai.LootBuff(lootBuff);
             }
             ///////////////////////////////

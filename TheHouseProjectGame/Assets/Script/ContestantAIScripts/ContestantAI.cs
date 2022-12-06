@@ -8,6 +8,7 @@ public class ContestantAI : MonoBehaviour
 {
 
     //Health
+    [SerializeField] private float maxHealth;
     [SerializeField] private float startingHealth;
     [SerializeField] private float lowHealthThreshold;
     //[SerializeField] private float healthRestoreRate;
@@ -18,15 +19,18 @@ public class ContestantAI : MonoBehaviour
     public float currentHealth
     {
         get { return cH; }
-        set { cH = Mathf.Clamp(value, 0, startingHealth); }
+        set { cH = Mathf.Clamp(value, 0, maxHealth); }
     }
 
     //Movement
     private NavMeshAgent agent;
     [SerializeField] private Transform contestantTransform;
-    public Transform[] enemyTransform;
+    [SerializeField] Transform[] enemyTransform;
     [SerializeField] private float chaseRange;
     [SerializeField] private float attackRange;
+
+    //Combat
+    public float attackDmg;
 
     //Circle related
     // [SerializeField] private Collider2D Circle;
@@ -65,7 +69,7 @@ public class ContestantAI : MonoBehaviour
         RangeNode attackRangeNode = new RangeNode(attackRange, enemyTransform, transform);
 
         //ATTACK
-        AttackNode attackNode = new AttackNode(agent, this, enemyTransform);
+        AttackNode attackNode = new AttackNode(agent, this, contestantTransform, enemyTransform);
 
         //FLEE
         HealthNode healthNode = new HealthNode(this, lowHealthThreshold);
@@ -87,6 +91,11 @@ public class ContestantAI : MonoBehaviour
     private void Update()
     {
         topNode.Evaluate();
+
+        if(currentHealth <= 0)
+        {
+            Death();
+        }
 
         if (topNode.nodeState == NodeState.FAILURE)
         {
@@ -112,13 +121,27 @@ public class ContestantAI : MonoBehaviour
     //Give loot to player
     public void LootBuff(float buff)
     {
-        startingHealth += buff;
+        currentHealth += buff;
         attackRange += buff;
+    }
+
+    //TEST: Danaged clicked contestant
+    private void OnMouseDown()
+    {
+        Debug.Log("Click!"); 
+        float dmg = 1;
+        TakeDamage(dmg);
     }
 
     //Take damage
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        Debug.Log(currentHealth);
+    }
+
+    public void Death()
+    {
+        Destroy(gameObject);
     }
 }
