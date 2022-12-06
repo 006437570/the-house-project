@@ -404,6 +404,8 @@ GameObject:
   - component: {fileID: 2200205113900535668}
   - component: {fileID: 2200205113900535670}
   - component: {fileID: 2200205113900535673}
+  - component: {fileID: -1072413435500555447}
+  - component: {fileID: 1880391862}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -482,13 +484,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2200205113900535666}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 837735a8c3bb1294586dfcaed28210c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 0163f8ee4244806479f01cd2dbf358a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   displayCard:
-  - {fileID: 0}
+  - id: 0
+    cardName: 
+    cost: 0
+    power: 0
+    cardDesc: 
+    spriteImage: {fileID: 0}
   displayId: 4
   id: 0
   cardName: 
@@ -511,12 +518,37 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2200205113900535666}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac38be60a0148ce40b8ce64b6067c295, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f8556ac18e5eeb4ba794f523c0408d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cardBack: {fileID: 2530920836848644554}
+--- !u!114 &-1072413435500555447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2200205113900535666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36a3a52e78fd6be458168c038a019478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1880391862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2200205113900535666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462cfbb218e0a81408c7dc5ef488ff01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardBack: {fileID: 4438035695606335087, guid: 464a2958b4610a54db2cdcb4c60adeb4, type: 3}
 --- !u!1 &2200205114557915787
 GameObject:
   m_ObjectHideFlags: 0
