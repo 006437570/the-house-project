@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Deck Scene.unity
     guid: 50a1f455c24ef524683df56e3b696cd1
+  - enabled: 1
+    path: Assets/Scenes/AITest.unity
+    guid: 24475c04489ef504496f9bb1e3a752d2
+  - enabled: 1
+    path: Assets/Scenes/BRTest.unity
+    guid: 0458cdd191dfa2f4e8777ccc0b0f9b31
+  - enabled: 1
+    path: Assets/Scenes/MapRNGTest.unity
+    guid: f3995d24eda528a40a8dcb4f4ca4471d
+  - enabled: 1
+    path: Assets/Scenes/RingTest.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
